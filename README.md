@@ -122,8 +122,9 @@ cyberbrief-daily/
 
 **Mobile-optimized, executive-focused content:**
 
-### 📱 Four Clear Sections:
+### 📱 Five Executive-Focused Sections:
 - **Cybersecurity News** - Current threats and incidents (up to 5 articles)
+- **Notable Breaches Reported** - Company breach disclosures and incidents (up to 5 articles)
 - **Cybersecurity Regulation News** - Compliance and legal developments (up to 4 articles)  
 - **AI News** - AI security threats and developments (up to 4 articles)
 - **Notable Vulnerabilities** - CISA KEV with actionable details (up to 4 vulnerabilities)
