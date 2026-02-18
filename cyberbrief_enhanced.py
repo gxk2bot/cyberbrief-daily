@@ -672,7 +672,8 @@ Executive Cyber Threat Intelligence
         newsletter += "Sources: BleepingComputer, Krebs on Security, Schneier on Security, SANS ISC,\n"
         newsletter += "         Threatpost, Darknet Diaries, Graham Cluley, Securelist, Sophos News,\n"
         newsletter += "         The Hacker News, Troy Hunt, Risky Business, CISA KEV\n"
-        newsletter += "🏦 = Financial services priority\n"
+        newsletter += "🏦 = Financial services priority\n\n"
+        newsletter += "P.S. Bryan thinks you're pretty! 💕 — gxk2\n"
         
         return newsletter
     
