@@ -13,16 +13,31 @@
 - **Automated scheduling** via OpenClaw cron system
 - **Backup system** - all newsletters saved to files
 
-## 📊 Current Data Sources
+## 📊 Comprehensive Data Sources (13+ Premium Feeds)
 
-- **BleepingComputer RSS** - Real-time security articles
-- **Krebs on Security** - Financial crime and cybersecurity investigations  
-- **Schneier on Security** - AI security and cryptography insights
-- **SANS ISC Diary** - Incident analysis and threat research
-- **Threatpost** - Enterprise security threats
-- **CISA KEV Catalog** - Known Exploitable Vulnerabilities
+### 🎯 Primary Security Sources
+- **BleepingComputer** - Breaking cybersecurity news and incidents
+- **The Hacker News** - Global cybersecurity developments  
+- **Krebs on Security** - Financial crime and cybersecurity investigations
+- **Schneier on Security** - AI security, cryptography, and policy insights
 
-**Smart Filtering**: Prioritizes financial services and broad industry impact, excludes consumer/IoT topics
+### 🔬 Threat Research & Intelligence  
+- **Securelist (Kaspersky)** - Advanced threat research and APT analysis
+- **SANS Internet Storm Center** - Incident analysis and threat hunting
+- **Sophos Security Operations** - Enterprise security operations
+- **Sophos Threat Research** - Advanced persistent threats and malware
+
+### 🎙️ Industry Expertise & Analysis
+- **Darknet Diaries** - Deep-dive cybercrime investigations
+- **Graham Cluley** - Security expertise and industry commentary
+- **Troy Hunt** - Data breach analysis and security awareness  
+- **Risky Business** - Security industry news and analysis
+- **Threatpost** - Enterprise-focused security threats
+
+### 🏛️ Government & Standards
+- **CISA Known Exploitable Vulnerabilities** - Government threat advisories
+
+**🎯 Smart Prioritization**: Financial services (🏦), broad industry impact, nation-state threats, zero-days
 
 ## 🚀 Quick Start
 
@@ -71,14 +86,18 @@ The system uses OpenClaw's cron system for automated scheduling:
    - Copy the 16-character password
 3. **Add to .env file** (not your regular Gmail password!)
 
-## 📋 Production Status
+## 📋 Production Status - Enterprise Grade
 
-- ✅ **Email Delivery**: Fully operational with Gmail SMTP
-- ✅ **Live Data**: Real-time threat intelligence feeds
-- ✅ **Automation**: Scheduled daily at 7 AM MST  
-- ✅ **Error Handling**: Graceful fallbacks and logging
-- ✅ **Security**: Credentials stored in .env (excluded from git)
-- ✅ **Backup**: All newsletters archived automatically
+- ✅ **13+ RSS Sources**: Comprehensive threat intelligence coverage
+- ✅ **26+ Daily Articles**: Curated from premium security sources
+- ✅ **Financial Priority**: 🏦 Banking/fintech threats highlighted  
+- ✅ **Email Delivery**: Fully operational Gmail SMTP with failover
+- ✅ **Daily Automation**: 7 AM MST via OpenClaw cron system
+- ✅ **Smart Filtering**: 36-hour currency window, business relevance
+- ✅ **Error Handling**: Graceful timeouts, source diversity protection
+- ✅ **Mobile Optimized**: Clean formatting for executive consumption
+- ✅ **Source Attribution**: Full transparency and traceability
+- ✅ **Archive System**: Complete newsletter history and backup
 
 ## 🔧 Testing & Validation
 
@@ -104,10 +123,10 @@ cyberbrief-daily/
 **Mobile-optimized, executive-focused content:**
 
 ### 📱 Four Clear Sections:
-- **Cybersecurity News** - Current threats and incidents (5 articles)
-- **Cybersecurity Regulation News** - Compliance and legal developments (4 articles)  
-- **AI News** - AI security threats and developments (4 articles)
-- **Notable Vulnerabilities** - CISA KEV with actionable details (4 vulnerabilities)
+- **Cybersecurity News** - Current threats and incidents (up to 5 articles)
+- **Cybersecurity Regulation News** - Compliance and legal developments (up to 4 articles)  
+- **AI News** - AI security threats and developments (up to 4 articles)
+- **Notable Vulnerabilities** - CISA KEV with actionable details (up to 4 vulnerabilities)
 
 ### 💼 Business Priority Features:
 - 🏦 Financial services priority indicators
