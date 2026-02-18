@@ -16,9 +16,13 @@
 ## 📊 Current Data Sources
 
 - **BleepingComputer RSS** - Real-time security articles
+- **Krebs on Security** - Financial crime and cybersecurity investigations  
+- **Schneier on Security** - AI security and cryptography insights
+- **SANS ISC Diary** - Incident analysis and threat research
+- **Threatpost** - Enterprise security threats
 - **CISA KEV Catalog** - Known Exploitable Vulnerabilities
-- **Security Blogs**: Krebs on Security, Schneier, SANS ISC, Threatpost
-- **Business filtering** - Excludes consumer/IoT, focuses on enterprise threats
+
+**Smart Filtering**: Prioritizes financial services and broad industry impact, excludes consumer/IoT topics
 
 ## 🚀 Quick Start
 
@@ -97,10 +101,19 @@ cyberbrief-daily/
 
 ## 🎯 Newsletter Format
 
-**Executive-focused content with business impact analysis:**
-- Top 3 cyber threats with business implications
-- Recent CISA known exploitable vulnerabilities  
-- Active security blog highlights
-- Clean ASCII art formatting for email readability
+**Mobile-optimized, executive-focused content:**
 
-Perfect for cybersecurity executives who need daily threat awareness without technical noise.
+### 📱 Four Clear Sections:
+- **Cybersecurity News** - Current threats and incidents (5 articles)
+- **Cybersecurity Regulation News** - Compliance and legal developments (4 articles)  
+- **AI News** - AI security threats and developments (4 articles)
+- **Notable Vulnerabilities** - CISA KEV with actionable details (4 vulnerabilities)
+
+### 💼 Business Priority Features:
+- 🏦 Financial services priority indicators
+- Source attribution for all articles
+- Executive-focused summaries (no technical jargon)
+- Links to full articles for detailed reading
+- Published within 36 hours for currency
+
+Perfect for cybersecurity executives who need comprehensive threat awareness across all relevant categories.
