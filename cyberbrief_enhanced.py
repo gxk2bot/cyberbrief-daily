@@ -196,7 +196,9 @@ Executive Cyber Threat Intelligence
         financial_keywords = [
             'bank', 'banking', 'financial', 'credit union', 'payment', 'fintech',
             'wall street', 'trading', 'investment', 'mortgage', 'loan', 'credit card',
-            'financial services', 'financial institution', 'swift', 'fedwire', 'ach'
+            'financial services', 'financial institution', 'swift', 'fedwire', 'ach',
+            'cryptocurrency', 'crypto', 'bitcoin', 'blockchain', 'defi', 'wallet',
+            'atm', 'pos system', 'payment processor', 'mastercard', 'visa', 'paypal'
         ]
         for keyword in financial_keywords:
             if keyword in text:
@@ -207,15 +209,27 @@ Executive Cyber Threat Intelligence
         broad_keywords = [
             'fortune 500', 'enterprise', 'all industries', 'widespread', 'global',
             'supply chain', 'critical infrastructure', 'healthcare', 'government',
-            'microsoft', 'google', 'amazon', 'cloud', 'saas', 'zero-day', 'ransomware'
+            'microsoft', 'google', 'amazon', 'cloud', 'saas', 'zero-day', 'ransomware',
+            'nation state', 'apt', 'advanced persistent threat', 'state sponsored',
+            'critical vulnerability', 'mass exploitation', 'coordinated attack'
         ]
         for keyword in broad_keywords:
             if keyword in text:
                 score += 2
                 break
         
+        # High-impact threat types
+        threat_keywords = [
+            'data breach', 'massive breach', 'million records', 'customer data',
+            'intellectual property', 'trade secrets', 'insider threat', 'supply chain attack'
+        ]
+        for keyword in threat_keywords:
+            if keyword in text:
+                score += 2
+                break
+        
         # General business relevance
-        business_keywords = ['corporate', 'business', 'company', 'organization']
+        business_keywords = ['corporate', 'business', 'company', 'organization', 'enterprise']
         for keyword in business_keywords:
             if keyword in text:
                 score += 1
@@ -227,7 +241,7 @@ Executive Cyber Threat Intelligence
         """Fetch articles from all sources and prioritize by financial/broad impact"""
         all_articles = []
         
-        # Source configurations
+        # Source configurations - comprehensive security RSS feeds
         sources = [
             {
                 'name': 'BleepingComputer',
@@ -245,13 +259,53 @@ Executive Cyber Threat Intelligence
                 'type': 'atom'
             },
             {
-                'name': 'SANS ISC Diary',
-                'url': 'https://isc.sans.edu/rssfeed.xml',
+                'name': 'SANS Internet Storm Center',
+                'url': 'https://isc.sans.edu/rssfeed_full.xml',
                 'type': 'rss'
             },
             {
                 'name': 'Threatpost',
                 'url': 'https://threatpost.com/feed/',
+                'type': 'rss'
+            },
+            {
+                'name': 'Darknet Diaries',
+                'url': 'https://podcast.darknetdiaries.com/',
+                'type': 'rss'
+            },
+            {
+                'name': 'Graham Cluley',
+                'url': 'https://grahamcluley.com/feed/',
+                'type': 'rss'
+            },
+            {
+                'name': 'Securelist (Kaspersky)',
+                'url': 'https://securelist.com/feed/',
+                'type': 'rss'
+            },
+            {
+                'name': 'Sophos Security Operations',
+                'url': 'https://news.sophos.com/en-us/category/security-operations/feed/',
+                'type': 'rss'
+            },
+            {
+                'name': 'The Hacker News',
+                'url': 'https://feeds.feedburner.com/TheHackersNews?format=xml',
+                'type': 'rss'
+            },
+            {
+                'name': 'Sophos Threat Research',
+                'url': 'https://news.sophos.com/en-us/category/threat-research/feed/',
+                'type': 'rss'
+            },
+            {
+                'name': 'Troy Hunt',
+                'url': 'https://www.troyhunt.com/rss/',
+                'type': 'rss'
+            },
+            {
+                'name': 'Risky Business',
+                'url': 'https://risky.biz/feeds/risky-business/',
                 'type': 'rss'
             }
         ]
@@ -563,8 +617,9 @@ Executive Cyber Threat Intelligence
         newsletter += "CyberBrief Daily\n"
         mst_time = datetime.now() - timedelta(hours=7)  # Convert to MST
         newsletter += f"Generated: {mst_time.strftime('%Y-%m-%d %H:%M:%S MST')}\n"
-        newsletter += "Sources: BleepingComputer, Krebs on Security, Schneier on Security,\n"
-        newsletter += "         SANS ISC, Threatpost, CISA KEV\n"
+        newsletter += "Sources: BleepingComputer, Krebs on Security, Schneier on Security, SANS ISC,\n"
+        newsletter += "         Threatpost, Darknet Diaries, Graham Cluley, Securelist, Sophos News,\n"
+        newsletter += "         The Hacker News, Troy Hunt, Risky Business, CISA KEV\n"
         newsletter += "🏦 = Financial services priority\n"
         
         return newsletter
