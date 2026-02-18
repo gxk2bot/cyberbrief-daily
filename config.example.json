@@ -1,0 +1,35 @@
+{
+  "email": {
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "your-email@gmail.com",
+    "password": "your-app-password",
+    "from_addr": "your-email@gmail.com",
+    "to_addrs": ["recipient@example.com"]
+  },
+  "openai": {
+    "api_key": "your-openai-key-here",
+    "model": "gpt-4"
+  },
+  "sources": {
+    "bleepingcomputer": {
+      "enabled": true,
+      "rss_url": "https://www.bleepingcomputer.com/feed/"
+    },
+    "cisa_kev": {
+      "enabled": true,
+      "url": "https://www.cisa.gov/sites/default/files/csv/known_exploited_vulnerabilities.csv"
+    },
+    "major_outlets": {
+      "enabled": true,
+      "check_wsj": true,
+      "check_wapo": true
+    }
+  },
+  "content": {
+    "max_articles": 3,
+    "max_blogs": 5,
+    "exclude_topics": ["IoT vulnerabilities", "consumer device security"],
+    "focus_areas": ["business impact", "trending threats", "enterprise security"]
+  }
+}
