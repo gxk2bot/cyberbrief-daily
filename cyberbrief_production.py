@@ -49,6 +49,20 @@ class CyberBriefProduction:
         
     def load_config(self) -> Dict[str, Any]:
         """Load configuration from JSON file"""
+        
+        # Load environment variables from .env file if it exists
+        env_file = Path(".env")
+        if env_file.exists():
+            try:
+                with open(env_file, 'r') as f:
+                    for line in f:
+                        line = line.strip()
+                        if line and not line.startswith('#') and '=' in line:
+                            key, value = line.split('=', 1)
+                            os.environ[key] = value
+            except Exception as e:
+                logger.error(f"Error loading .env file: {e}")
+        
         if not self.config_path.exists():
             logger.error(f"Config file {self.config_path} not found")
             # Create minimal config for fallback
