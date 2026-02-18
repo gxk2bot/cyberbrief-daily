@@ -114,10 +114,35 @@ Executive Cyber Threat Intelligence
 """
     
     def categorize_article(self, article: Dict) -> str:
-        """Categorize article into one of the four sections"""
+        """Categorize article into one of the five sections"""
         title = article['title'].lower()
         desc = article.get('description', '').lower()
         text = f"{title} {desc}"
+        
+        # Notable Breaches - highest priority for breach disclosures
+        breach_keywords = [
+            'data breach', 'security breach', 'breach disclosure', 'disclosed breach', 'confirms breach',
+            'admits breach', 'reports breach', 'announces breach', 'reveals breach', 'discloses hack',
+            'confirms hack', 'admits hack', 'reports hack', 'cyber incident disclosure', 'security incident disclosure',
+            'breach notification', 'incident notification', 'compromised', 'hacked', 'cyberattack on'
+        ]
+        if any(keyword in text for keyword in breach_keywords):
+            return 'breach'
+            
+        # Also check for breach-indicating phrases
+        breach_phrases = [
+            'fell victim to', 'targeted by hackers', 'systems compromised', 'data compromised',
+            'customer data stolen', 'personal information accessed', 'unauthorized access to',
+            'security incident at', 'cyberattack against', 'data stolen from', 'hack of',
+            'ransomware attack on', 'suffered a breach', 'victim of cyberattack'
+        ]
+        if any(phrase in text for phrase in breach_phrases):
+            return 'breach'
+            
+        # Check for company-specific breach patterns
+        if any(word in text for word in ['company', 'corporation', 'inc', 'ltd', 'bank', 'hospital', 'university', 'hotel', 'airline']):
+            if any(word in text for word in ['breach', 'hack', 'compromised', 'cyberattack', 'incident']):
+                return 'breach'
         
         # AI News - broader detection for AI security topics
         ai_keywords = [
@@ -218,13 +243,25 @@ Executive Cyber Threat Intelligence
                 score += 2
                 break
         
-        # High-impact threat types
+        # High-impact threat types and breach disclosures (very high priority)
         threat_keywords = [
             'data breach', 'massive breach', 'million records', 'customer data',
-            'intellectual property', 'trade secrets', 'insider threat', 'supply chain attack'
+            'intellectual property', 'trade secrets', 'insider threat', 'supply chain attack',
+            'breach disclosure', 'confirms breach', 'admits breach', 'reports breach',
+            'security incident disclosure', 'compromised customer', 'stolen data'
         ]
         for keyword in threat_keywords:
             if keyword in text:
+                score += 3  # Increased from 2 to 3 for breach-related content
+                break
+        
+        # Additional boost for clear breach indicators
+        breach_indicators = [
+            'fell victim to', 'systems compromised', 'unauthorized access', 'cyberattack on',
+            'ransomware attack on', 'hack of', 'data stolen from'
+        ]
+        for indicator in breach_indicators:
+            if indicator in text:
                 score += 2
                 break
         
@@ -519,12 +556,12 @@ Executive Cyber Threat Intelligence
         # If no good description, create executive-focused summary from title
         if not summary or len(summary) < 40:
             title_lower = title.lower()
-            if any(word in title_lower for word in ['ransomware', 'ransom']):
+            if any(word in title_lower for word in ['breach', 'hack', 'compromise', 'incident disclosure']):
+                summary = "Security breach or incident disclosed affecting organizational data or systems with potential regulatory and business implications."
+            elif any(word in title_lower for word in ['ransomware', 'ransom']):
                 summary = "Ransomware attack or campaign identified with potential business impact on targeted organizations."
             elif any(word in title_lower for word in ['vulnerability', 'flaw', 'bug']):
                 summary = "Security vulnerability discovered that could allow unauthorized access or system compromise."
-            elif any(word in title_lower for word in ['breach', 'hack', 'compromise']):
-                summary = "Cybersecurity incident reported with potential data exposure or system compromise."
             elif any(word in title_lower for word in ['ai', 'artificial intelligence', 'machine learning']):
                 summary = "AI-related security development affecting enterprise systems or security practices."
             elif any(word in title_lower for word in ['regulation', 'compliance', 'legal', 'court']):
@@ -548,8 +585,9 @@ Executive Cyber Threat Intelligence
         cybersecurity_articles = [a for a in articles if a['category'] == 'cybersecurity']
         regulation_articles = [a for a in articles if a['category'] == 'regulation']
         ai_articles = [a for a in articles if a['category'] == 'ai']
+        breach_articles = [a for a in articles if a['category'] == 'breach']
         
-        logger.info(f"Article breakdown: {len(cybersecurity_articles)} cybersecurity, {len(regulation_articles)} regulation, {len(ai_articles)} AI")
+        logger.info(f"Article breakdown: {len(cybersecurity_articles)} cybersecurity, {len(regulation_articles)} regulation, {len(ai_articles)} AI, {len(breach_articles)} breaches")
         
         # Start building newsletter
         newsletter = self.generate_header()
@@ -567,6 +605,20 @@ Executive Cyber Threat Intelligence
                 newsletter += f"  Source: {article['source']} | {article['link']}\n\n"
         else:
             newsletter += "No major cybersecurity news found in current feeds.\n\n"
+        
+        # Notable Breaches Section
+        newsletter += "NOTABLE BREACHES REPORTED\n"
+        newsletter += "=" * 26 + "\n\n"
+        
+        if breach_articles:
+            for article in breach_articles[:5]:  # Top 5
+                summary = self.generate_article_summary(article)
+                priority_indicator = " 🏦" if article['priority'] >= 3 else ""
+                newsletter += f"• {article['title']}{priority_indicator}\n"
+                newsletter += f"  {summary}\n"
+                newsletter += f"  Source: {article['source']} | {article['link']}\n\n"
+        else:
+            newsletter += "No notable breach disclosures found in current feeds.\n\n"
         
         # Cybersecurity Regulation News Section
         newsletter += "CYBERSECURITY REGULATION NEWS\n"
